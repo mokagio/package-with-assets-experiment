@@ -13,7 +13,8 @@ let package = Package(
     targets: [
         .target(
             name: "GenOne",
-            resources: [.copy("Assets")]
+            resources: [.copy("Assets")],
+            plugins: ["DownloadGenOnePlugin"]
         ),
         .testTarget(
             name: "GenOneTests",
