@@ -19,5 +19,9 @@ let package = Package(
             name: "GenOneTests",
             dependencies: ["GenOne"]
         ),
+        .plugin(
+            name: "DownloadGenOnePlugin",
+            capability: .buildTool()
+        ),
     ]
 )
