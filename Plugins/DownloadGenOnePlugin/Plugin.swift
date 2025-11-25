@@ -14,7 +14,9 @@ struct DownloadGenOnePlugin: BuildToolPlugin {
                 displayName: "Download Gen One Pokemon Data",
                 executable: URL(fileURLWithPath: "/usr/bin/curl"),
                 arguments: [
-                    "-o",
+                    "--silent",
+                    "--show-error",
+                    "--output",
                     outputPath.path(),
                     "https://pokeapi.co/api/v2/pokemon?limit=151"
                 ],
