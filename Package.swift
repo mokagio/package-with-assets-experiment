@@ -12,7 +12,8 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "GenOne"
+            name: "GenOne",
+            resources: [.copy("Assets")]
         ),
         .testTarget(
             name: "GenOneTests",

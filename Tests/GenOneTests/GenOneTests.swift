@@ -1,6 +1,6 @@
 import Testing
 @testable import GenOne
 
-@Test func example() async throws {
-    // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+@Test func `gen one loads 151 results from JSON`() throws {
+    #expect(try loadGenOne().count == 151)
 }
