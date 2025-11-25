@@ -4,7 +4,7 @@ import PackagePlugin
 @main
 struct DownloadGenOnePlugin: BuildToolPlugin {
     func createBuildCommands(context: PluginContext, target: Target) async throws -> [Command] {
-        // TODO: Implement download logic for gen_one.json
+        // TODO: Move the JSON into the plugin Assets/Subfolder final location
 
         let outputDirectory = context.pluginWorkDirectoryURL
         let outputPath = outputDirectory.appending(component: "gen_one.json")
