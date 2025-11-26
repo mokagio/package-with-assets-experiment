@@ -24,8 +24,7 @@ let package = Package(
         // networking.
         .target(
             name: "GenOneFailing",
-            path: "Sources/GenOne",
-            resources: [.copy("Assets")],
+            resources: [.copy("../GenOne/Assets")],
             plugins: ["DownloadGenOnePlugin"]
         ),
         .plugin(
