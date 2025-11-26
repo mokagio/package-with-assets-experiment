@@ -13,12 +13,20 @@ let package = Package(
     targets: [
         .target(
             name: "GenOne",
-            resources: [.copy("Assets")],
-            plugins: ["DownloadGenOnePlugin"]
+            resources: [.copy("Assets")]
         ),
         .testTarget(
             name: "GenOneTests",
             dependencies: ["GenOne"]
+        ),
+        // Example of package that uses build tool plugin and
+        // fails to build because of the plugin restriction on
+        // networking.
+        .target(
+            name: "GenOneFailing",
+            path: "Sources/GenOne",
+            resources: [.copy("Assets")],
+            plugins: ["DownloadGenOnePlugin"]
         ),
         .plugin(
             name: "DownloadGenOnePlugin",
