@@ -4,7 +4,9 @@
       "Bash(swift build:*)",
       "Bash(swift test:*)",
       "WebSearch",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(xcodebuild:*)",
+      "Bash(make:*)"
     ],
     "deny": [],
     "ask": []
