@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3FB0F7922ED7D4DB00B7B1FE /* GenOneFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB0F7882ED7D4DB00B7B1FE /* GenOneFramework.framework */; };
+		3FB0F7CF2ED7E71300B7B1FE /* GenOne in Frameworks */ = {isa = PBXBuildFile; productRef = 3FB0F7CE2ED7E71300B7B1FE /* GenOne */; };
+		3FB0F7D22ED7E7D600B7B1FE /* GenOne in Frameworks */ = {isa = PBXBuildFile; productRef = 3FB0F7D12ED7E7D600B7B1FE /* GenOne */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB0F7CF2ED7E71300B7B1FE /* GenOne in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB0F7D22ED7E7D600B7B1FE /* GenOne in Frameworks */,
 				3FB0F7922ED7D4DB00B7B1FE /* GenOneFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +66,7 @@
 			children = (
 				3FB0F78A2ED7D4DB00B7B1FE /* GenOneFramework */,
 				3FB0F7952ED7D4DB00B7B1FE /* GenOneFrameworkTests */,
+				3FB0F7D02ED7E7D600B7B1FE /* Frameworks */,
 				3FB0F7892ED7D4DB00B7B1FE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,6 +78,13 @@
 				3FB0F7912ED7D4DB00B7B1FE /* GenOneFrameworkTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		3FB0F7D02ED7E7D600B7B1FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,6 +118,7 @@
 			);
 			name = GenOneFramework;
 			packageProductDependencies = (
+				3FB0F7CE2ED7E71300B7B1FE /* GenOne */,
 			);
 			productName = GenOneFramework;
 			productReference = 3FB0F7882ED7D4DB00B7B1FE /* GenOneFramework.framework */;
@@ -129,6 +142,7 @@
 			);
 			name = GenOneFrameworkTests;
 			packageProductDependencies = (
+				3FB0F7D12ED7E7D600B7B1FE /* GenOne */,
 			);
 			productName = GenOneFrameworkTests;
 			productReference = 3FB0F7912ED7D4DB00B7B1FE /* GenOneFrameworkTests.xctest */;
@@ -161,6 +175,9 @@
 			);
 			mainGroup = 3FB0F77C2ED7D4C500B7B1FE;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				3FB0F7CD2ED7E71300B7B1FE /* XCLocalSwiftPackageReference "../../../package-with-assets-experiment" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3FB0F7892ED7D4DB00B7B1FE /* Products */;
 			projectDirPath = "";
@@ -582,6 +599,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		3FB0F7CD2ED7E71300B7B1FE /* XCLocalSwiftPackageReference "../../../package-with-assets-experiment" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../../package-with-assets-experiment";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3FB0F7CE2ED7E71300B7B1FE /* GenOne */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GenOne;
+		};
+		3FB0F7D12ED7E7D600B7B1FE /* GenOne */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3FB0F7CD2ED7E71300B7B1FE /* XCLocalSwiftPackageReference "../../../package-with-assets-experiment" */;
+			productName = GenOne;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3FB0F77D2ED7D4C500B7B1FE /* Project object */;
 }
