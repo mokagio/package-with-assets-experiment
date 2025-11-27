@@ -36,7 +36,13 @@ build_framework() {
 
     rm -rf "$XCODEBUILD_ARCHIVE_PATH"
 
-    PROTOBUFKIT_LIBRARY_TYPE=dynamic xcodebuild archive \
+    # TODO: Consider using this env var to switch between static (default)
+    # and dynamic (required for XCFramework)
+    #
+    # See:
+    # https://github.com/OpenSwiftUIProject/ProtobufKit/blob/937eae5426277bec040c7f99bc8e1498c30ed467/Package.swift#L30
+    # LIBRARY_TYPE=dynamic xcodebuild archive \
+    xcodebuild archive \
         -scheme "$scheme" \
         -archivePath "$XCODEBUILD_ARCHIVE_PATH" \
         -derivedDataPath "$XCODEBUILD_DERIVED_DATA_PATH" \

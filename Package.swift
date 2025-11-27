@@ -7,6 +7,9 @@ let package = Package(
     products: [
         .library(
             name: "GenOne",
+            // Seems like to build for XCFrameworks, we need dynamic libraries
+            // https://forums.swift.org/t/how-to-build-swift-package-as-xcframework/41414/57
+            type: .dynamic,
             targets: ["GenOne"]
         ),
     ],
