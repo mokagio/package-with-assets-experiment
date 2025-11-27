@@ -95,6 +95,13 @@ xcframework-integration-test: xcframework
 		-scheme $(INTEGRATION_TEST_SCHEME) \
 		-destination "platform=iOS Simulator,name=iPhone 16 Pro" | xcbeautify
 
+xcframework-scaffold-test:
+	@echo "Running scaffold project tests..."
+	xcodebuild test \
+		-project $(PROJECT_DIR)/$(PROJECT_NAME).xcodeproj \
+		-scheme $(SCHEME) \
+		-destination "platform=iOS Simulator,name=iPhone 16 Pro" | xcbeautify
+
 # Help target
 help:
 	@echo "Available targets:"
