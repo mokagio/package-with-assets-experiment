@@ -9,10 +9,30 @@ public struct Resource: Decodable {
     public let url: URL
 }
 
+// Private class for bundle lookup (needed for Bundle(for:))
+private class BundleLocator {}
+
 public func loadGenOne() throws -> [Resource] {
     // Convoluted logic for this example, but lifted from
     // GutenbergKit which we're building toward.
-    guard let assetsURL = Bundle.module.url(
+
+    // Try to find the resource bundle - works for both SPM and XCFramework
+    let bundle: Bundle = {
+        // First try Bundle.module (works for SPM)
+        if let url = Bundle.module.resourceURL?.appendingPathComponent("GenOne_GenOne.bundle"),
+           let bundle = Bundle(url: url) {
+            return bundle
+        }
+        // Fallback for XCFramework: bundle is nested in the framework
+        if let url = Bundle(for: BundleLocator.self).resourceURL?.appendingPathComponent("GenOne_GenOne.bundle"),
+           let bundle = Bundle(url: url) {
+            return bundle
+        }
+        // Last resort: use Bundle.module
+        return Bundle.module
+    }()
+
+    guard let assetsURL = bundle.url(
         forResource: "Assets",
         withExtension: nil
     ) else {

@@ -81,9 +81,38 @@ build_framework() {
     rm -f "$FRAMEWORK_MODULES_PATH/$scheme.swiftmodule/*.private.swiftinterface"
 }
 
+copy_resource_bundles() {
+    local sdk="$1"
+    local scheme="$2"
+
+    local XCODEBUILD_ARCHIVE_PATH="./build/$scheme-$sdk.xcarchive"
+    local FRAMEWORK_PATH="$XCODEBUILD_ARCHIVE_PATH/Products/Library/Frameworks/$scheme.framework"
+
+    # Find all resource bundles in DerivedData
+    local BUNDLE_PATH="$XCODEBUILD_DERIVED_DATA_PATH/Build/Intermediates.noindex/ArchiveIntermediates/$scheme/IntermediateBuildFilesPath/UninstalledProducts/$sdk"
+
+    # Copy all .bundle files found
+    if [ -d "$BUNDLE_PATH" ]; then
+        find "$BUNDLE_PATH" -name "*.bundle" -maxdepth 1 -type d -print0 | while IFS= read -r -d '' bundle; do
+            bundle_name=$(basename "$bundle")
+            echo "Copying resource bundle: $bundle_name to $FRAMEWORK_PATH"
+            # Remove symlink if it exists and copy the actual bundle
+            rm -rf "$FRAMEWORK_PATH/$bundle_name"
+            cp -R "$bundle" "$FRAMEWORK_PATH/"
+        done
+    else
+        echo "Warning: Bundle path not found: $BUNDLE_PATH"
+    fi
+}
+
 build_framework "iphonesimulator" "generic/platform=iOS Simulator" "$PACKAGE_NAME"
+copy_resource_bundles "iphonesimulator" "$PACKAGE_NAME"
+
 build_framework "iphoneos" "generic/platform=iOS" "$PACKAGE_NAME"
+copy_resource_bundles "iphoneos" "$PACKAGE_NAME"
+
 build_framework "macosx" "generic/platform=macOS" "$PACKAGE_NAME"
+copy_resource_bundles "macosx" "$PACKAGE_NAME"
 
 echo "Builds completed successfully."
 
