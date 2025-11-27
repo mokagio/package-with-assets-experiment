@@ -37,8 +37,8 @@ build_framework() {
     rm -rf "$XCODEBUILD_ARCHIVE_PATH"
 
     PROTOBUFKIT_LIBRARY_TYPE=dynamic xcodebuild archive \
-        -scheme $scheme \
-        -archivePath $XCODEBUILD_ARCHIVE_PATH \
+        -scheme "$scheme" \
+        -archivePath "$XCODEBUILD_ARCHIVE_PATH" \
         -derivedDataPath "$XCODEBUILD_DERIVED_DATA_PATH" \
         -sdk "$sdk" \
         -destination "$destination" \
@@ -73,17 +73,17 @@ build_framework "macosx" "generic/platform=macOS" "$PACKAGE_NAME"
 
 echo "Builds completed successfully."
 
-cd $PROJECT_BUILD_DIR
+cd "$PROJECT_BUILD_DIR"
 
 rm -rf "$PACKAGE_NAME.xcframework"
 xcodebuild -create-xcframework  \
-    -framework $PACKAGE_NAME-iphonesimulator.xcarchive/Products/Library/Frameworks/$PACKAGE_NAME.framework \
-    -framework $PACKAGE_NAME-iphoneos.xcarchive/Products/Library/Frameworks/$PACKAGE_NAME.framework \
-    -framework $PACKAGE_NAME-macosx.xcarchive/Products/Library/Frameworks/$PACKAGE_NAME.framework \
-    -output $PACKAGE_NAME.xcframework
+    -framework "$PACKAGE_NAME-iphonesimulator.xcarchive/Products/Library/Frameworks/$PACKAGE_NAME.framework" \
+    -framework "$PACKAGE_NAME-iphoneos.xcarchive/Products/Library/Frameworks/$PACKAGE_NAME.framework" \
+    -framework "$PACKAGE_NAME-macosx.xcarchive/Products/Library/Frameworks/$PACKAGE_NAME.framework" \
+    -output "$PACKAGE_NAME.xcframework"
 
-cp -r $PACKAGE_NAME-iphonesimulator.xcarchive/dSYMs $PACKAGE_NAME.xcframework/ios-arm64_x86_64-simulator
-cp -r $PACKAGE_NAME-iphoneos.xcarchive/dSYMs $PACKAGE_NAME.xcframework/ios-arm64
-cp -r $PACKAGE_NAME-macosx.xcarchive/dSYMs $PACKAGE_NAME.xcframework/macos-arm64_x86_64
+cp -r "$PACKAGE_NAME-iphonesimulator.xcarchive/dSYMs" "$PACKAGE_NAME.xcframework/ios-arm64_x86_64-simulator"
+cp -r "$PACKAGE_NAME-iphoneos.xcarchive/dSYMs" "$PACKAGE_NAME.xcframework/ios-arm64"
+cp -r "$PACKAGE_NAME-macosx.xcarchive/dSYMs" "$PACKAGE_NAME.xcframework/macos-arm64_x86_64"
 
 zip -r "$PACKAGE_NAME.xcframework.zip" "$PACKAGE_NAME.xcframework"
