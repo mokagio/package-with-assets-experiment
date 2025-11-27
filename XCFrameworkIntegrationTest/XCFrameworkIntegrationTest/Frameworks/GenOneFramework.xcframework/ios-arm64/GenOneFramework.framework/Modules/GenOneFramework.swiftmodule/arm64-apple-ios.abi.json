@@ -1,0 +1,83 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "GenOneFramework",
+    "printedName": "GenOneFramework",
+    "children": [
+      {
+        "kind": "TypeDecl",
+        "name": "GenOneFrameworkDummy",
+        "printedName": "GenOneFrameworkDummy",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenOneFrameworkDummy",
+                "printedName": "GenOneFramework.GenOneFrameworkDummy",
+                "usr": "s:15GenOneFramework0abC5DummyV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:15GenOneFramework0abC5DummyVACycfc",
+            "mangledName": "$s15GenOneFramework0abC5DummyVACycfc",
+            "moduleName": "GenOneFramework",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "dummy",
+            "printedName": "dummy()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15GenOneFramework0abC5DummyV5dummySiyF",
+            "mangledName": "$s15GenOneFramework0abC5DummyV5dummySiyF",
+            "moduleName": "GenOneFramework",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:15GenOneFramework0abC5DummyV",
+        "mangledName": "$s15GenOneFramework0abC5DummyV",
+        "moduleName": "GenOneFramework",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": []
+}

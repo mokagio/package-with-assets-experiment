@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/gio/Developer/a8c/package-with-assets-experiment/XCFrameworkScaffold/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/GenOneFramework/InstallationBuildProductsLocation/Library/Frameworks/GenOneFramework.framework/Versions/A/GenOneFramework'
+relocations:     []
+...
