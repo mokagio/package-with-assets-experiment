@@ -3,7 +3,8 @@
     "allow": [
       "Bash(swift build:*)",
       "Bash(swift test:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(tree:*)"
     ],
     "deny": [],
     "ask": []
