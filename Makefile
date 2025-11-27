@@ -26,9 +26,7 @@ INTEGRATION_TEST_PROJECT_NAME = XCFrameworkIntegrationTest
 INTEGRATION_TEST_SCHEME = IntegrationTests
 INTEGRATION_TEST_FRAMEWORKS_DIR = $(INTEGRATION_TEST_PROJECT_DIR)/Frameworks
 
-.PHONY: all clean xcframework archive-ios archive-ios-simulator archive-macos xcframework-integration-test
-
-all: xcframework
+.PHONY: clean xcframework archive-ios archive-ios-simulator archive-macos xcframework-integration-test
 
 # Build XCFramework for iOS, iOS Simulator, and macOS
 xcframework: archive-ios archive-ios-simulator archive-macos
