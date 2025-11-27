@@ -14,3 +14,6 @@ DerivedData
 .idea/
 *.hmap
 *.xcscmblueprint
+
+build/
+output/
