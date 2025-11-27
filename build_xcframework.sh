@@ -12,20 +12,27 @@
 # Script modified from https://docs.emergetools.com/docs/analyzing-a-spm-framework-ios
 
 set -e
+set -u
+set -o pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P)"
-PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
-
-PROJECT_BUILD_DIR="${PROJECT_BUILD_DIR:-"${PROJECT_ROOT}/build"}"
-XCODEBUILD_BUILD_DIR="$PROJECT_BUILD_DIR/xcodebuild"
-XCODEBUILD_DERIVED_DATA_PATH="$XCODEBUILD_BUILD_DIR/DerivedData"
-
-PACKAGE_NAME=$1
+PACKAGE_NAME=${1-}
 if [ -z "$PACKAGE_NAME" ]; then
     echo "No package name provided. Using the first scheme found in the Package.swift."
     PACKAGE_NAME=$(xcodebuild -list | awk 'schemes && NF>0 { print $1; exit } /Schemes:$/ { schemes = 1 }')
     echo "Using: $PACKAGE_NAME"
 fi
+
+# FIXME: Original script was in subfolder, this is in repo root for the time being.
+#
+# SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P)"
+# PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+PROJECT_ROOT=$(pwd)
+
+PROJECT_BUILD_DIR="${PROJECT_BUILD_DIR:-"${PROJECT_ROOT}/build"}"
+XCODEBUILD_BUILD_DIR="$PROJECT_BUILD_DIR/xcodebuild"
+XCODEBUILD_DERIVED_DATA_PATH="$XCODEBUILD_BUILD_DIR/DerivedData"
+
+echo "PROJECT_BUILD_DIR is $PROJECT_BUILD_DIR"
 
 build_framework() {
     local sdk="$1"
@@ -79,7 +86,7 @@ build_framework "macosx" "generic/platform=macOS" "$PACKAGE_NAME"
 
 echo "Builds completed successfully."
 
-cd "$PROJECT_BUILD_DIR"
+pushd "$PROJECT_BUILD_DIR" > /dev/null
 
 rm -rf "$PACKAGE_NAME.xcframework"
 xcodebuild -create-xcframework  \
@@ -92,4 +99,9 @@ cp -r "$PACKAGE_NAME-iphonesimulator.xcarchive/dSYMs" "$PACKAGE_NAME.xcframework
 cp -r "$PACKAGE_NAME-iphoneos.xcarchive/dSYMs" "$PACKAGE_NAME.xcframework/ios-arm64"
 cp -r "$PACKAGE_NAME-macosx.xcarchive/dSYMs" "$PACKAGE_NAME.xcframework/macos-arm64_x86_64"
 
-zip -r "$PACKAGE_NAME.xcframework.zip" "$PACKAGE_NAME.xcframework"
+zip -r "$PACKAGE_NAME.xcframework.zip" "$PACKAGE_NAME.xcframework" > /dev/null
+
+# TODO: Remove emoji, print all in green
+echo "✅ XCFramework generated at $(pwd)/$PACKAGE_NAME.xcframework"
+
+popd > /dev/null
