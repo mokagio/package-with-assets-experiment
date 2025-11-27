@@ -26,7 +26,11 @@ INTEGRATION_TEST_PROJECT_NAME = XCFrameworkIntegrationTest
 INTEGRATION_TEST_SCHEME = IntegrationTests
 INTEGRATION_TEST_FRAMEWORKS_DIR = $(INTEGRATION_TEST_PROJECT_DIR)/Frameworks
 
-.PHONY: clean xcframework archive-ios archive-ios-simulator archive-macos xcframework-integration-test
+# SPM XCFramework variables
+SPM_PACKAGE_NAME = GenOne
+SPM_XCFRAMEWORK_PATH = ./build/$(SPM_PACKAGE_NAME).xcframework
+
+.PHONY: clean xcframework archive-ios archive-ios-simulator archive-macos xcframework-integration-test spm-xcframework spm-xcframework-integration-test
 
 # Build XCFramework for iOS, iOS Simulator, and macOS
 xcframework: xcframework-scaffold-test archive-ios archive-ios-simulator archive-macos
@@ -100,14 +104,29 @@ xcframework-scaffold-test:
 		-scheme $(SCHEME) \
 		-destination "platform=iOS Simulator,name=iPhone 16 Pro" | xcbeautify
 
+# Build XCFramework from Swift Package using script
+spm-xcframework:
+	@echo "Building XCFramework from Swift Package..."
+	./build_xcframework.sh $(SPM_PACKAGE_NAME)
+
+# Build SPM XCFramework and run integration tests
+spm-xcframework-integration-test: spm-xcframework
+	@echo "Running integration tests with SPM XCFramework..."
+	xcodebuild test \
+		-project $(INTEGRATION_TEST_PROJECT_DIR)/$(INTEGRATION_TEST_PROJECT_NAME).xcodeproj \
+		-scheme $(INTEGRATION_TEST_SCHEME) \
+		-destination "platform=iOS Simulator,name=iPhone 16 Pro" | xcbeautify
+
 # Help target
 help:
 	@echo "Available targets:"
-	@echo "  make all                        - Build XCFramework for all platforms (default)"
-	@echo "  make xcframework                - Build XCFramework for all platforms"
-	@echo "  make archive-ios                - Build archive for iOS only"
-	@echo "  make archive-ios-simulator      - Build archive for iOS Simulator only"
-	@echo "  make archive-macos              - Build archive for macOS only"
-	@echo "  make xcframework-integration-test - Build XCFramework and run integration tests"
-	@echo "  make clean                      - Remove all build artifacts"
-	@echo "  make help                       - Show this help message"
+	@echo "  make all                             - Build XCFramework for all platforms (default)"
+	@echo "  make xcframework                     - Build XCFramework for all platforms"
+	@echo "  make archive-ios                     - Build archive for iOS only"
+	@echo "  make archive-ios-simulator           - Build archive for iOS Simulator only"
+	@echo "  make archive-macos                   - Build archive for macOS only"
+	@echo "  make xcframework-integration-test    - Build XCFramework and run integration tests"
+	@echo "  make spm-xcframework                 - Build XCFramework from Swift Package"
+	@echo "  make spm-xcframework-integration-test - Build SPM XCFramework and run integration tests"
+	@echo "  make clean                           - Remove all build artifacts"
+	@echo "  make help                            - Show this help message"
