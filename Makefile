@@ -29,7 +29,7 @@ INTEGRATION_TEST_FRAMEWORKS_DIR = $(INTEGRATION_TEST_PROJECT_DIR)/Frameworks
 .PHONY: clean xcframework archive-ios archive-ios-simulator archive-macos xcframework-integration-test
 
 # Build XCFramework for iOS, iOS Simulator, and macOS
-xcframework: archive-ios archive-ios-simulator archive-macos
+xcframework: xcframework-scaffold-test archive-ios archive-ios-simulator archive-macos
 	@echo "Creating XCFramework..."
 	@mkdir -p $(OUTPUT_DIR)
 	@rm -rf $(XCFRAMEWORK_PATH)
