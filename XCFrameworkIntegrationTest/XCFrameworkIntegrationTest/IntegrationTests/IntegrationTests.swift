@@ -8,3 +8,8 @@ import GenOne
 @Test func `Method from XCFramework->GenOne works`() throws {
     #expect(try loadGenOne().count == 151)
 }
+
+@Test func `HTMLParser dependency works in XCFramework`() {
+    let html = "<p>Hello, <strong>world</strong>!</p>"
+    #expect(getRootNodeName(htmlString: html) == "p")
+}
