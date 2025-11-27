@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "AC1A8CDB-2559-4418-8634-6AAC9D0BAB62",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:XCFrameworkIntegrationTest.xcodeproj",
+        "identifier" : "3FB0F7A82ED7D90100B7B1FE",
+        "name" : "IntegrationTestsFromWrapper"
+      }
+    }
+  ],
+  "version" : 1
+}
