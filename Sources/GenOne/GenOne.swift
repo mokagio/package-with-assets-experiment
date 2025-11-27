@@ -1,4 +1,5 @@
 import Foundation
+import HTMLParser
 
 struct Response: Decodable {
     let results: [Resource]
@@ -11,6 +12,12 @@ public struct Resource: Decodable {
 
 // Private class for bundle lookup (needed for Bundle(for:))
 private class BundleLocator {}
+
+public func getRootNodeName(htmlString: String) -> String? {
+    let parser = HTMLParser()
+    let rootNode = parser.parse(htmlString)
+    return rootNode.children.first?.name
+}
 
 public func loadGenOne() throws -> [Resource] {
     // Convoluted logic for this example, but lifted from

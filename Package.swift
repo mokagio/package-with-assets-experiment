@@ -4,6 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "GenOne",
+    platforms: [.iOS(.v13)],
     products: [
         .library(
             name: "GenOne",
@@ -13,9 +14,21 @@ let package = Package(
             targets: ["GenOne"]
         ),
     ],
+    dependencies: [
+        .package(
+            url: "https://github.com/wordpress-mobile/AztecEditor-iOS",
+            revision: "2aade453b7ab6018a8c24f1f9d2c29f5098fbf31"
+        ),
+    ],
     targets: [
         .target(
             name: "GenOne",
+            dependencies: [
+                .product(
+                    name: "HTMLParser",
+                    package: "AztecEditor-iOS"
+                ),
+            ],
             resources: [.copy("Assets")]
         ),
         .testTarget(

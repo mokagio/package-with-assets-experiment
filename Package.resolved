@@ -1,0 +1,14 @@
+{
+  "originHash" : "3a249df9c62438d59e46ad7479c4514fb3e9815d31eb43c6da1abf1e9f4785b7",
+  "pins" : [
+    {
+      "identity" : "azteceditor-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/wordpress-mobile/AztecEditor-iOS",
+      "state" : {
+        "revision" : "2aade453b7ab6018a8c24f1f9d2c29f5098fbf31"
+      }
+    }
+  ],
+  "version" : 3
+}
